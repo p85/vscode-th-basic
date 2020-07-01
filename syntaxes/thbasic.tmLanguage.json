@@ -6,6 +6,7 @@
   "patterns": [
     { "include": "#line-comment"},
     { "include": "#line-number"},
+    { "include": "#comparing-operands"},
     { "include": "#logical-operands"},
     { "include": "#builtin-constants"},
     { "include": "#builtin-statements"},
@@ -13,6 +14,7 @@
     { "include": "#variable-no-type"},
     { "include": "#variable-string"},
     { "include": "#variable-number"},
+    { "include": "#variable-any"},
     { "include": "#string"},
     { "include": "#operands"}
   ],
@@ -21,6 +23,7 @@
       "patterns": [
         { "include": "#line-comment"},
         { "include": "#line-number"},
+        { "include": "#comparing-operands"},
         { "include": "#logical-operands"},
         { "include": "#builtin-constants"},
         { "include": "#builtin-statements"},
@@ -28,6 +31,7 @@
         { "include": "#variable-no-type"},
         { "include": "#variable-string"},
         { "include": "#variable-number"},
+        { "include": "#variable-any"},
         { "include": "#string"},
         { "include": "#operands"}
       ]
@@ -43,13 +47,17 @@
       "name": "entity.name.function"
     },
     "line-number": {
-      "match": "(?<![a-zA-Z])[0-9]+",
+      "match": "(?<![a-zA-Z])#?[0-9]+",
       "name": "constant.numeric"
     },
     "string": {
       "begin": "\"",
       "end": "\"",
       "name": "string.quoted.double"
+    },
+    "variable-any": {
+      "match": "[a-zA-Z0-9_]+",
+      "name": "variable.name"
     },
     "variable-string": {
       "match": "[a-zA-Z0-9_]+\\${1}",
@@ -73,6 +81,10 @@
     },
     "operands": {
       "match": "(\\+|\\-|\\*|/|MOD){1}",
+      "name": "keyword.operator"
+    },
+    "comparing-operands": {
+      "match": "(=|<>|>{1}=?|<{1}=?)",
       "name": "keyword.operator"
     }
   }
