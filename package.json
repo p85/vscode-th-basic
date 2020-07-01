@@ -1,0 +1,37 @@
+{
+  "name": "vscode-th-basic",
+  "publisher": "vscode-th-basic",
+  "repository": {
+    "url": "https://github.com/p85/vscode-th-basic"
+  },
+  "displayName": "Telehack BASIC Language Support",
+  "description": "Telehack BASIC Language Support",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.38.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "thbasic",
+        "aliases": [
+          "TH BASIC"
+        ],
+        "extensions": [
+          ".bas"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "thbasic",
+        "scopeName": "source.bas",
+        "path": "./syntaxes/thbasic.tmLanguage.json"
+      }
+    ]
+  }
+}

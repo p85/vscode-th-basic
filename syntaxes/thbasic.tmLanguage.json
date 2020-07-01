@@ -1,0 +1,79 @@
+{
+  "scopeName": "source.bas",
+  "fileTypes": [".bas"],
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "TH BASIC",
+  "patterns": [
+    { "include": "#line-comment"},
+    { "include": "#line-number"},
+    { "include": "#logical-operands"},
+    { "include": "#builtin-constants"},
+    { "include": "#builtin-statements"},
+    { "include": "#builtin-commands"},
+    { "include": "#variable-no-type"},
+    { "include": "#variable-string"},
+    { "include": "#variable-number"},
+    { "include": "#string"},
+    { "include": "#operands"}
+  ],
+  "repository": {
+    "expression": {
+      "patterns": [
+        { "include": "#line-comment"},
+        { "include": "#line-number"},
+        { "include": "#logical-operands"},
+        { "include": "#builtin-constants"},
+        { "include": "#builtin-statements"},
+        { "include": "#builtin-commands"},
+        { "include": "#variable-no-type"},
+        { "include": "#variable-string"},
+        { "include": "#variable-number"},
+        { "include": "#string"},
+        { "include": "#operands"}
+      ]
+    },
+    "line-comment": {
+      "begin": "^ *[0-9]+ +",
+      "end": "$",
+      "match": "REM{1} {1}.*",
+      "name": "comment.line"
+    },
+    "builtin-commands": {
+      "match": "(PRINT|LEFT\\$|RIGHT\\$|MID\\$|ABS|ASC|ATN|BEEP|BIN\\$|BRK|CHR\\$|CINT|COLOR|COS|CSNG|EXP|INT|LEN|LIN|LOCATE|LOG{1}10*|NUM|OCT$\\|PEEK|POKE|POLKEY\\$|R2D|REC|RND|SGN|SIN|SLEEP|SPACE\\$|SPA|SPC\\$|SQR|SQRT|STR\\$|SYS|STRING\\$|TAB{1}\\$*|TAN|TIM|TIMER|TYP|UPS\\$|VAL){1}",
+      "name": "entity.name.function"
+    },
+    "line-number": {
+      "match": "(?<![a-zA-Z])[0-9]+",
+      "name": "constant.numeric"
+    },
+    "string": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double"
+    },
+    "variable-string": {
+      "match": "[a-zA-Z0-9_]+\\${1}",
+      "name": "variable.name"
+    },
+    "variable-number": {
+      "match": "[a-zA-Z0-9_]+(%|!){1}",
+      "name": "variable.name"
+    },
+    "builtin-statements": {
+      "match": "(FOR|IF|THEN|ELSE|END|STOP|GOTO|GOSUB|CLEAR|CLOSE|CLS|RANDOMIZE|READ|RENUMBER|RESTORE|RETURN|DEF FN|DIM|OPEN|TO|NEXT|INPUT{1}#*)",
+      "name": "entity.name.selector"
+    },
+    "builtin-constants": {
+      "match": "(TIME\\$|ARG\\$|ARGC%|ARGV\\$|DATE\\$|DIR\\$|HEIGHT|WIDTH|INKEY\\$|PORT\\$|USER\\$)",
+      "name": "variable.name"
+    },
+    "logical-operands": {
+      "match": "(AND|OR|NOT){1}",
+      "name": "keyword.operator"
+    },
+    "operands": {
+      "match": "(\\+|\\-|\\*|/|MOD){1}",
+      "name": "keyword.operator"
+    }
+  }
+}
